@@ -32,7 +32,7 @@ class Customquery(Resource):
 
 @app.route("/flasked")
 def trial():
-    return render_template("home.html")
+    pass
 
 
 api.add_resource(Nofilter,'/<string:limit>')
