@@ -67,11 +67,3 @@ if( __name__ == "__main__"):
     hs.processque(True)
 
 
-
-
-
-# Ninenineacres.soup = BeautifulSoup(baseobj, 'lxml')
-#         self.cities = []
-#         parent = Ninenineacres.soup.find("div", { "class":"row"})
-#         print(parent)
-#         subs = parent.find_all("span", {"itemprop": "name"})

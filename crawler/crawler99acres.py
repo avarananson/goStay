@@ -67,56 +67,6 @@ class Ninenineacres(CustomSpider):
                 maindict['itembhk']  = ' '.join(self.getbhkdetails(r.text))     
                 print(maindict['itembhk']) 
 
-                
-                 
-                
-
-            #     e = elem.find("a", {"class" : "card-link-detail"})
-            #    
-            
-            # # print( maindict['itemlink'])
-            #     maindict['itemtitle'] =  e['title']
-            # # print(maindict['itemtitle'] )
-            #     street = elem.find("span",{"itemprop" : "streetAddress"})
-            #     maindict['itemstreet'] = street.text
-            # # print(maindict['itemstreet'])
-            #     local = elem.find("span",{"itemprop" : "addressLocality"})
-            #     maindict['itemlocality'] = local.text
-            # # print(maindict['itemlocality'])
-            #     imageurldiv = elem.find("div",{"class" : "card-image"})
-            #     link = imageurldiv.find("div",{"class" : "nobrokerSlider"})
-            #     if(link):
-            #         link = link.find("a")['data-src']
-            #     else:
-            #         link = None
-            #     maindict['itemimage'] =  link
-            #        
-            #     maindict['uniqueId'] =  str(djb2.hashed(maindict['itemlink']))
-            #     #print(maindict)
-            #     prices = elem.find_all("div",{"itemprop" : "valueReference"})
-            #     pr1 = prices[1].find('span')
-            #     if(pr1 is None):
-            #         depval = 0
-            #     else:    
-            #         dep = re.sub('[^0-9.]', "", pr1.text)
-            #         if( dep ==''):
-            #             depval = 0
-            #         else:
-            #             depval = float(dep)   
-            #     maindict['itemdeposit'] = depval
-            #     pr2 = prices[2].find('span')
-            #     if(pr2 is None):
-            #         rent =0
-            #     else:    
-            #         ren = re.sub('[^0-9.]', "", pr2.text)
-            #         if( ren ==''):
-            #             rent = 0
-            #         else:
-            #             rent = float(ren)   
-            #     maindict['itemrentprice'] = rent
-                #print(maindict)
-               # self.startdbinsertion(maindict,idx)
-
             print("    > Insertion completed for page {}".format(idx)) 
         else:
             self.done = True       

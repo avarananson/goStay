@@ -45,7 +45,8 @@ def insert_db(db,values, **kwargs):
     
 
 def preIndexcreate():
-   resp =  db.rents.create_index([("uniqueId", ASCENDING )])  #TRYING TO CREATE INDEX ON THE UNIQUE HASH OF DJB2
+   resp =  db.rents.create_index([("uniqueId", ASCENDING )])  #TRYING TO CREATE I   NDEX ON THE UNIQUE HASH OF DJB2
+   resp =  db.rents.create_index([("itemstreet", ASCENDING ),("itembhk", ASCENDING )])
   # print("resp is {}".format(resp)) 
    logging.info("Index created with info {}".format(resp)) 
 
@@ -61,6 +62,39 @@ def updateRec(mdict,idu):
 
 def updateMeminfo():
     logging.info("Ram free after one item QUEUE over is  {} MB".format(psutil.virtual_memory().available/1024/1024))
+
+
+def getallrec(limit):
+    res =  db.rents.find({},{"itemimage":0, "_id":0, "uniqueId":0,"itemdeposit":0}).limit(int(limit))
+    rs = []
+    for r in res:
+        rs.append(r)
+    return rs 
+
+def bhkareafiler(area,bhk,sort,limit):
+    if(db is None):
+        raise Exception("No db is found")
+    else:
+        if(sort=="ASC"):
+            sortval = 1
+        else:
+            sortval = -1   
+        if(bhk is not None):
+
+            res = db.rents.find({"itemstreet":area,"itembhk":bhk},{"itemimage":0, "_id":0, "uniqueId":0,"itemdeposit":0}).sort([("itemrentprice",sortval)]).limit(limit)
+        elif (bhk is None):
+            res = db.rents.find({"itemstreet":area},{"itemimage":0, "_id":0, "uniqueId":0,"itemdeposit":0}).sort([("itemrentprice",sortval)]).limit(limit)
+        else:
+            return("problem with filterss")
+        out = []
+        for r in res:
+            out.append(r)
+        return out
+    return None        
+
+def areafiler(area,sort,limit):
+    pass
+
     
     
 
